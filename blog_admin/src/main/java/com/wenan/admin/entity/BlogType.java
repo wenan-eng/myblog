@@ -1,7 +1,10 @@
 package com.wenan.admin.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -31,12 +34,14 @@ public class BlogType implements Serializable {
 
     private String blogType;
 
+    @TableField(fill = FieldFill.INSERT)
     private Integer isvalid;
 
     private String typeDes;
 
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
 

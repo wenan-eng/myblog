@@ -1,7 +1,10 @@
 package com.wenan.admin.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -45,13 +48,13 @@ public class BlogUser implements Serializable {
     @ApiModelProperty(value = "用户头像")
     private String userImg;
 
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "是否可以用：0-可用；1-不可用")
     private Integer isvalid;
 
-    @ApiModelProperty(value = "创建时间")
+    @TableField(fill = FieldFill.INSERT)
     private Date createTime;
-
-    @ApiModelProperty(value = "修改时间")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
 
