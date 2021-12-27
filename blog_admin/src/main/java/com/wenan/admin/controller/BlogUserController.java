@@ -44,7 +44,12 @@ public class BlogUserController {
         }
         return R.ok().data("20000","用户新增成功");
     }
-    // 2 修改用户
+
+    /**
+     * 根据id修改用户信息
+     * @param user 传入修改后的用户信息
+     * @return 返回修改结果
+     */
     @ApiOperation(value = "根据id修改用户")
     @PostMapping("updateUser")
     public R updateUser(@RequestBody BlogUser user) {
