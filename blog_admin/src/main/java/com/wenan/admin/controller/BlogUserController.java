@@ -1,18 +1,16 @@
 package com.wenan.admin.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wenan.admin.common.R;
 import com.wenan.admin.entity.BlogUser;
 import com.wenan.admin.service.BlogUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * <p>
@@ -68,5 +66,13 @@ public class BlogUserController {
     }
     // 3 删除用户
     // 4 分页获取用户信息
+    @ApiOperation(value = "分页获取用户信息")
+    @PostMapping("listUser/{page}/{limit}")
+    public R listUser(@PathVariable("page") Integer page,
+                      @PathVariable("limit") Integer limit) {
+        Page<BlogUser> listUser = userService.listUser(page, limit);
+        return R.ok().data("userList",listUser);
+    }
+
 }
 
