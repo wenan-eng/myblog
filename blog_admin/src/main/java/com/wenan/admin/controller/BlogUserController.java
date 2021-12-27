@@ -22,7 +22,7 @@ import javax.annotation.Resource;
  * @author wenan
  * @since 2021-12-27
  */
-@Api(value = "用户管理")
+@Api(description = "用户管理")
 @RestController
 @RequestMapping("/admin/user")
 public class BlogUserController {
@@ -45,6 +45,22 @@ public class BlogUserController {
         return R.ok().data("20000","用户新增成功");
     }
     // 2 修改用户
+    @ApiOperation(value = "根据id修改用户")
+    @PostMapping("updateUser")
+    public R updateUser(@RequestBody BlogUser user) {
+        // 1 根据id查找到对应的用户
+        BlogUser blogUser = userService.getById(user.getUserId());
+        // 2 修改用户信息
+        blogUser.setUsername(user.getUsername());
+        blogUser.setPassword(user.getPassword());
+        blogUser.setUserDes(user.getUserDes());
+        // 3 保存修改后的用户信息
+        boolean save = userService.updateById(blogUser);
+        if (!save) {
+            return R.error().data("20001","用户修改失败");
+        }
+        return R.ok().data("20000","用户修改成功");
+    }
     // 3 删除用户
     // 4 分页获取用户信息
 }
