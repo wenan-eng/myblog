@@ -39,6 +39,7 @@ public class BlogUser implements Serializable {
     @ApiModelProperty(value = "用户密码")
     private String password;
 
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "用户角色id")
     private String roleId;
 
