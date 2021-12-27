@@ -64,8 +64,31 @@ public class BlogUserController {
         }
         return R.ok().data("20000","用户修改成功");
     }
-    // 3 删除用户
-    // 4 分页获取用户信息
+
+    @ApiOperation(value = "根据id删除用户")
+    @PostMapping("delUser/{id}")
+    public R delUser(@PathVariable("id") String id) {
+        // 1 判断用户id是否存在
+        BlogUser user = userService.getById(id);
+        if (user == null) {
+            return R.error().data("20001", "用户不存在");
+        }
+        // 2 根据id删除用户信息（逻辑上的删除）
+        user.setIsvalid(1);
+        boolean update = userService.updateById(user);
+        if (!update) {
+            return R.error().data("20001", "删除失败");
+        }
+        return R.ok().data("20000", "删除成功");
+    }
+
+
+    /**
+     * 用户分页展示
+     * @param page 当前页码
+     * @param limit 每页展示数量
+     * @return 分页展示信息
+     */
     @ApiOperation(value = "分页获取用户信息")
     @PostMapping("listUser/{page}/{limit}")
     public R listUser(@PathVariable("page") Integer page,
