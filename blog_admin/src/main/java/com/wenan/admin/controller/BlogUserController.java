@@ -38,6 +38,7 @@ public class BlogUserController {
     @PostMapping("addUser")
     public R addUser(@RequestBody BlogUser user) {
         boolean save = userService.save(user);
+        // todo 密码加密，验证权限等功能，需要完善
         if (!save) {
             return R.error().data("20001","用户新增失败");
         }
