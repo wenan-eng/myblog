@@ -20,16 +20,8 @@ public class BlogVo {
     @ApiModelProperty(value = "博客分类")
     private String blogTypeId;
 
-    @ApiModelProperty(value = "博客封面地址")
-    private String blogImg;
-
     @NotNull
     @ApiModelProperty(value = "作者id")
     private String userId;
 
-    @ApiModelProperty(value = "图片地址")
-    private String contentImg;
-
-    @ApiModelProperty(value = "图片描述")
-    private String imgDes;
 }
