@@ -1,6 +1,7 @@
 package com.wenan.admin.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wenan.admin.common.R;
 import com.wenan.admin.entity.BlogInfo;
 import com.wenan.admin.entity.vo.BlogVo;
@@ -62,5 +63,12 @@ public class BlogInfoController {
     /**
      *  分页展示博客
      */
+    @ApiOperation(value = "分页展示博客列表")
+    @PostMapping("listBlog/{page}/{limit}")
+    public R listBlog(@PathVariable("page") Integer page,
+                      @PathVariable("limit") Integer limit) {
+        Page<BlogInfo> listBlog=infoService.listBlog(page,limit);
+        return R.ok().data("listBlog", listBlog);
+    }
 }
 

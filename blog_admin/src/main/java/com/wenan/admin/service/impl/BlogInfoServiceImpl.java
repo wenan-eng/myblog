@@ -1,6 +1,7 @@
 package com.wenan.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wenan.admin.entity.BlogContent;
 import com.wenan.admin.entity.BlogInfo;
 import com.wenan.admin.entity.vo.BlogVo;
@@ -93,5 +94,14 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo> i
         if (!save) {
             throw new BlogException(20001, "修改失败");
         }
+    }
+
+    @Override
+    public Page<BlogInfo> listBlog(Integer page, Integer limit) {
+        Page<BlogInfo> infoPage = new Page<>(page,limit);
+        QueryWrapper<BlogInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("isvalid", 0);
+        baseMapper.selectPage(infoPage, queryWrapper);
+        return infoPage;
     }
 }

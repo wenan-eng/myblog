@@ -1,5 +1,6 @@
 package com.wenan.admin.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wenan.admin.entity.BlogInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wenan.admin.entity.vo.BlogVo;
@@ -20,4 +21,6 @@ public interface BlogInfoService extends IService<BlogInfo> {
     void delBlog(String id);
 
     void updateBlog(UpdateBlogVo blogVo);
+
+    Page<BlogInfo> listBlog(Integer page, Integer limit);
 }
