@@ -34,6 +34,9 @@ public class BlogContent implements Serializable {
     @TableId(value = "blog_content_id", type = IdType.ID_WORKER_STR)
     private String blogContentId;
 
+    @ApiModelProperty(value = "博客id")
+    private String blogId;
+
     @ApiModelProperty(value = "内容")
     private String blogContent;
 

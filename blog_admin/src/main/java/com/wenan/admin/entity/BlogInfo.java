@@ -42,8 +42,7 @@ public class BlogInfo implements Serializable {
     @ApiModelProperty(value = "博客分类")
     private String blogTypeId;
 
-    @ApiModelProperty(value = "博客内容id")
-    private String blogContentId;
+
 
     @ApiModelProperty(value = "博客图片地址")
     private String blogImg;
