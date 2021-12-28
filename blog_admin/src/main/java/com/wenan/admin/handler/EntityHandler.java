@@ -17,6 +17,7 @@ public class EntityHandler implements MetaObjectHandler {
         this.setFieldValByName("updateTime", new Date(), metaObject);
         this.setFieldValByName("isvalid", 0, metaObject);
         this.setFieldValByName("roleId", "3", metaObject);
+        this.setFieldValByName("blogTypeId", "1", metaObject);
     }
 
     @Override

@@ -10,7 +10,6 @@ import lombok.Data;
 @Data
 public class BlogVo {
 
-    @NotNull
     @ApiModelProperty(value = "博客标题")
     private String blogTitle;
 
@@ -20,8 +19,11 @@ public class BlogVo {
     @ApiModelProperty(value = "博客分类")
     private String blogTypeId;
 
-    @NotNull
+    @ApiModelProperty(value = "内容")
+    private String blogContent;
+
     @ApiModelProperty(value = "作者id")
     private String userId;
+
 
 }

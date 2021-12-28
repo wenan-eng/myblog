@@ -39,6 +39,7 @@ public class BlogInfo implements Serializable {
     @ApiModelProperty(value = "博客简介")
     private String blogDes;
 
+    @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "博客分类")
     private String blogTypeId;
 
