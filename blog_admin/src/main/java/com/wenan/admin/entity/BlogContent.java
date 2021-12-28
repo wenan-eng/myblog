@@ -40,9 +40,6 @@ public class BlogContent implements Serializable {
     @ApiModelProperty(value = "内容")
     private String blogContent;
 
-    @ApiModelProperty(value = "图片id")
-    private String contentImgId;
-
     @TableField(fill = FieldFill.INSERT)
     @ApiModelProperty(value = "是否可用")
     private Integer isvalid;

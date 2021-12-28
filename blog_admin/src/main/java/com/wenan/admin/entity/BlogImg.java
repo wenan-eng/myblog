@@ -32,8 +32,10 @@ public class BlogImg implements Serializable {
     @TableId(value = "content_img_id", type = IdType.ID_WORKER_STR)
     private String contentImgId;
 
+    @ApiModelProperty(value = "图片地址")
     private String contentImg;
 
+    @ApiModelProperty(value = "图片描述")
     private String imgDes;
 
     @ApiModelProperty(value = "博客内容id")

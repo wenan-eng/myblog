@@ -1,5 +1,6 @@
 package com.wenan.admin.entity.vo;
 
+import com.sun.istack.internal.NotNull;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import lombok.Data;
 @Data
 public class BlogVo {
 
+    @NotNull
     @ApiModelProperty(value = "博客标题")
     private String blogTitle;
 
@@ -18,12 +20,16 @@ public class BlogVo {
     @ApiModelProperty(value = "博客分类")
     private String blogTypeId;
 
-    @ApiModelProperty(value = "博客内容id")
-    private String blogContentId;
-
-    @ApiModelProperty(value = "博客图片地址")
+    @ApiModelProperty(value = "博客封面地址")
     private String blogImg;
 
+    @NotNull
     @ApiModelProperty(value = "作者id")
     private String userId;
+
+    @ApiModelProperty(value = "图片地址")
+    private String contentImg;
+
+    @ApiModelProperty(value = "图片描述")
+    private String imgDes;
 }
