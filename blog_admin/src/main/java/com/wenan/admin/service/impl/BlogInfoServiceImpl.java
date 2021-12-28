@@ -1,5 +1,6 @@
 package com.wenan.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wenan.admin.entity.BlogContent;
 import com.wenan.admin.entity.BlogInfo;
 import com.wenan.admin.entity.vo.BlogVo;
@@ -47,6 +48,23 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo> i
         boolean save = contentService.save(blogContent);
         if (!save) {
             throw new BlogException(20001, "新增失败");
+        }
+    }
+
+    @Transactional
+    @Override
+    public void delBlog(String id) {
+        // 1 删除BlogContent
+        QueryWrapper<BlogContent> contentQueryWrapper = new QueryWrapper<>();
+        contentQueryWrapper.eq("blog_id", id);
+        boolean remove = contentService.remove(contentQueryWrapper);
+        if (!remove) {
+            throw new BlogException(20001, "删除博文失败");
+        }
+        // 2 删除BlogInfo
+        int delete = baseMapper.deleteById(id);
+        if (delete!=1) {
+            throw new BlogException(20001, "删除博文失败");
         }
     }
 }

@@ -15,4 +15,6 @@ import com.wenan.admin.entity.vo.BlogVo;
 public interface BlogInfoService extends IService<BlogInfo> {
 
     void addBlog(BlogVo blogVo);
+
+    void delBlog(String id);
 }

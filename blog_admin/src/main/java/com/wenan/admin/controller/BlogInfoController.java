@@ -44,17 +44,7 @@ public class BlogInfoController {
     @ApiOperation(value = "删除博客")
     @PostMapping("delBlog/{id}")
     public R delBlog(@PathVariable("id") String id) {
-        // 1 根据id查找对应博客信息
-        BlogInfo blogInfo = infoService.getById(id);
-        if (blogInfo == null) {
-            throw new BlogException(20003, "博客不存在");
-        }
-        // 2 将博客的isvalid修改为1
-        blogInfo.setIsvalid(1);
-        boolean save = infoService.save(blogInfo);
-        if (!save) {
-            throw new BlogException(20002, "删除失败");
-        }
+        infoService.delBlog(id);
         return R.ok();
     }
 
