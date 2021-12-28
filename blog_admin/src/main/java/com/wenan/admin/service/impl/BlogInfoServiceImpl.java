@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wenan.admin.entity.BlogContent;
 import com.wenan.admin.entity.BlogInfo;
 import com.wenan.admin.entity.vo.BlogVo;
+import com.wenan.admin.entity.vo.UpdateBlogVo;
 import com.wenan.admin.exception.BlogException;
 import com.wenan.admin.mapper.BlogInfoMapper;
 import com.wenan.admin.service.BlogContentService;
@@ -64,7 +65,33 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo> i
         // 2 删除BlogInfo
         int delete = baseMapper.deleteById(id);
         if (delete!=1) {
-            throw new BlogException(20001, "删除博文失败");
+            throw new BlogException(20001, "删除博客失败");
+        }
+    }
+
+    @Transactional
+    @Override
+    public void updateBlog(UpdateBlogVo UpdateBlogVo) {
+        // 1 修改BlogInfo
+        String blogId = UpdateBlogVo.getBlogId();
+        BlogInfo blogInfo = baseMapper.selectById(blogId);
+        if (blogInfo == null) {
+            throw new BlogException(2001, "博客不存在");
+        }
+        blogInfo.setBlogDes(UpdateBlogVo.getBlogDes());
+        blogInfo.setBlogTitle(UpdateBlogVo.getBlogTitle());
+        int update = baseMapper.updateById(blogInfo);
+        if (update != 1) {
+            throw new BlogException(200100, "修改失败");
+        }
+        // 2 修改BlogContent
+        QueryWrapper<BlogContent> contentQueryWrapper = new QueryWrapper<>();
+        contentQueryWrapper.eq("blog_id", blogId);
+        BlogContent content = contentService.getOne(contentQueryWrapper);
+        content.setBlogContent(UpdateBlogVo.getBlogContent());
+        boolean save = contentService.update(content,contentQueryWrapper);
+        if (!save) {
+            throw new BlogException(20001, "修改失败");
         }
     }
 }

@@ -4,6 +4,7 @@ package com.wenan.admin.controller;
 import com.wenan.admin.common.R;
 import com.wenan.admin.entity.BlogInfo;
 import com.wenan.admin.entity.vo.BlogVo;
+import com.wenan.admin.entity.vo.UpdateBlogVo;
 import com.wenan.admin.exception.BlogException;
 import com.wenan.admin.service.BlogInfoService;
 import io.swagger.annotations.Api;
@@ -39,7 +40,7 @@ public class BlogInfoController {
 
 
     /**
-     *  删除博客
+     *  根据id删除博客
      */
     @ApiOperation(value = "删除博客")
     @PostMapping("delBlog/{id}")
@@ -51,6 +52,12 @@ public class BlogInfoController {
     /**
      *  修改博客
      */
+    @ApiOperation(value = "修改博客")
+    @PostMapping("updateBlog")
+    public R updateBlog(@RequestBody UpdateBlogVo UpdateBlogVo) {
+        infoService.updateBlog(UpdateBlogVo);
+        return R.ok();
+    }
 
     /**
      *  分页展示博客
