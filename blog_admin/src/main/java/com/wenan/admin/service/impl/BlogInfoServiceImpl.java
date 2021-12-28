@@ -27,6 +27,7 @@ public class BlogInfoServiceImpl extends ServiceImpl<BlogInfoMapper, BlogInfo> i
     @Resource
     private BlogContentService contentService;
 
+    @Transactional
     @Override
     public void addBlog(BlogVo blogVo) {
         // 1 创建BlogInfo对象，插入Info信息，并获得BlogId
